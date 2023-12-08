@@ -9,5 +9,5 @@ window.addEventListener('load', function() {
   setTimeout(function() {
     // Remove the loading page
     loadingPage.remove();
-  }, 3000);
+  }, 2000);
 });
