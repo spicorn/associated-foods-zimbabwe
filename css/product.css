@@ -6,7 +6,7 @@
 
 
 body{
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.226);
 }
 
 
@@ -20,7 +20,7 @@ body{
 
 .top {
     z-index: 1000;
-    background: white;
+    background: rgba(255, 255, 255, 0.11);
     position: fixed;
     width: 100%;
     height: 0.3rem;
@@ -75,141 +75,200 @@ body{
   
 
 /*=========header ends==========*/
-  
 
-
+.main{
+  margin-top: 3rem;
+}
 
 section .main h3{
     text-align: center;
+    color: white;
 }
 
-.card{
-    margin: auto;
+.carousel {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
 }
 
+.carousel-item {
+  --items: 10;
+  --width: clamp(150px, 30vw, 300px);
+  --height: clamp(200px, 40vw, 400px);
+  --x: calc(var(--active) * 800%);
+  --y: calc(var(--active) * 200%);
+  --rot: calc(var(--active) * 120deg);
+  --opacity: calc(var(--zIndex) / var(--items) * 3 - 2);
+  overflow: hidden;
+  position: absolute;
+  z-index: var(--zIndex);
+  width: var(--width);
+  height: var(--height);
+  margin: calc(var(--height) * -0.5) 0 0 calc(var(--width) * -0.5);
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transform-origin: 0% 100%;
+  box-shadow: 0 10px 50px 10px rgba(0, 0, 0, 0.5);
+  background: black;
+  pointer-events: all;
+  transform: translate(var(--x), var(--y)) rotate(var(--rot));
+  transition: transform 0.8s cubic-bezier(0, 0.02, 0, 1);
+}
+.carousel-item .carousel-box {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+  opacity: var(--opacity);
+  font-family: "Orelo-sw-db", serif;
+}
+.carousel-item .carousel-box:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5));
+}
+.carousel-item .title {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  bottom: 20px;
+  left: 20px;
+  transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+  font-size: clamp(20px, 3vw, 30px);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+.carousel-item .num {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  top: 10px;
+  left: 20px;
+  transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+  font-size: clamp(20px, 10vw, 80px);
+}
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
 
+.layout {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.layout:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 90px;
+  width: 10px;
+  height: 100%;
+  border: 1px solid #fff;
+  border-top: none;
+  border-bottom: none;
+  opacity: 0.15;
+}
+.layout .box {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  color: white;
+  transform-origin: 0% 10%;
+  transform: rotate(-90deg);
+  font-size: 9px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
 
-/******product card******/
-.card {
-    position: relative;
-    top: 2em;
-    width: 12.5em;
-    height: 7.5em;
-    background: white;
-    transition: .4s ease-in-out;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
-    overflow: hidden;
+.logo {
+  position: absolute;
+  z-index: 2;
+  top: 28px;
+  right: 28px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Orelo-sw-db", serif;
+  pointer-events: all;
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+}
+
+.social {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  right: 25px;
+  color: #fff;
+  opacity: 0.4;
+}
+.social a {
+  display: inline-block;
+  margin-left: 3px;
+}
+.social svg {
+  --fill: #fff;
+  width: 35px;
+  height: 35px;
+}
+
+.cursor {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: calc(var(--size) * -0.5) 0 0 calc(var(--size) * -0.5);
+  transition: transform 0.85s cubic-bezier(0, 0.02, 0, 1);
+  display: none;
+  pointer-events: none;
+}
+@media (pointer: fine) {
+  .cursor {
+    display: block;
   }
-  
-  .heading {
-    position: relative;
-    color: green;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding-top: 1em;
-    padding-left: 1em;
-    transition: .4s ease-in-out;
-  }
-  
-  .details {
-    position: relative;
-    color: black;
-    font-size: 0.6em;
-    padding-top: 1.5em;
-    padding-left: 2em;
-    transition: .4s ease-in-out;
-  }
-  
-  .price {
-    position: relative;
-    color: black;
-    font-weight: bold;
-    font-size: 0.8em;
-    padding-top: 1.5em;
-    padding-left: 1.5em;
-    top: 9.6em;
-    left: 5em;
-    transition: .4s ease-in-out;
-  }
-  
- /* .btn1 {
-    position: relative;
-    border: none;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.295);
-    color: white;
-    font-size: 0.6em;
-    padding-left: 6.9em;
-    padding-right: 6.9em;
-    padding-top: 0.8em;
-    padding-bottom: 0.85em;
-    border-radius: 10px;
-    left: 2.6em;
-    top: 14.8em;
-    transition: .4s ease-in-out;
-    font-weight: bold;
-  }
-  
-  .btn1:hover {
-    background-color: green;
-    cursor: pointer;
-  }
-  
-  .btn2 {
-    position: relative;
-    border: none;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.295);
-    color: white;
-    font-size: 0.6em;
-    padding-left: 5.1em;
-    padding-right: 5.1em;
-    padding-top: 0.8em;
-    padding-bottom: 0.85em;
-    border-radius: 10px;
-    left: 2.6em;
-    top: 15.5em;
-    transition: .4s ease-in-out;
-    font-weight: bold;
-  }
-  
-  .btn2:hover {
-    background-color: green;
-    cursor: pointer;
-  }*/
-  
-  .product-img {
-    border-radius: 50%;
-    position: relative;
-    top: -4em;
-    left: 12.5em;
-    width: 70px;
-    height: 70px;
-    transition: .4s ease-in-out;
-  }
-  
-  .card:hover {
-    width: 12.5em;
-    height: 23em;
-    transform: translateY(1.25em);
-  }
-  
-  .card:hover + .product-img {
-    transform: rotateX(360deg);
-    height: 100px;
-    width: 100px;
-    left: 8.5em;
-    top: -18em;
-  }
-  
-  .card:hover .heading {
-    transform: translateY(7em) translateX(2.3em);
-  }
-  
-  .card:hover .details {
-    transform: translateY(13em) translateX(3.5em);
-  }
+}
+
+.cursor2 {
+  --size: 2px;
+  transition-duration: 0.7s;
+}
+
 
 
   
